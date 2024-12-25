@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 from django.db.models.signals import post_save
 
-# Create your models here.
+
 
 
 
@@ -49,6 +49,10 @@ class TourPackage(BaseModel):
 
     image=models.ImageField(upload_to='tour-image',null=True,blank=True)
 
+    imagetwo=models.ImageField(upload_to='tour-imagetwo',null=True,blank=True)
+
+
+
     
 
 
@@ -59,36 +63,40 @@ class TourPackage(BaseModel):
 
 class Booking(BaseModel):
 
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="user_booking")
 
-    tour_package=models.ForeignKey(TourPackage,on_delete=models.CASCADE)
+    tour_package=models.ForeignKey(TourPackage,on_delete=models.CASCADE,related_name="tour_booking")
 
     booking_date=models.DateTimeField(auto_now=True)
 
     number_of_people=models.IntegerField()
 
-    total_price=models.IntegerField()
-
-    status_choices=(
-        ("Pending","Pending"),
-        ("Confirmed","Confirmed"),
-        ("Cancelled","Cancelled")
-        
-    )
-    status=models.CharField(max_length=200,choices=status_choices,default="Pending")
-
+     
+    @property
+    def total_price(self):
+        return self.tour_package.price*self.number_of_people
    
 
     def __str__(self):
-        return self.booking_date
+        return str(self.tour_package)
     
 
 
+class BookingConfirmation(BaseModel):
+
+    tour_object=models.ForeignKey(TourPackage,on_delete=models.CASCADE,related_name="tour_confirm")
+
+    booking_id=models.CharField(max_length=200,null=True)
+
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="user_confirm")
+
+     
+
 class Review(BaseModel):
 
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="user_review")
 
-    tour=models.ForeignKey(TourPackage,on_delete=models.CASCADE)
+    tour=models.ForeignKey(TourPackage,on_delete=models.CASCADE,related_name="tour_review")
 
     rating=models.PositiveIntegerField()
 
@@ -106,4 +114,4 @@ def create_userprofile(sender,instance,created,**kwargs):
         UserProfile.objects.create(user=instance)
 
 
-post_save.connect(create_userprofile,User)
+post_save.connect(create_userprofile,sender=User)

@@ -18,9 +18,33 @@ from django.contrib import admin
 from django.urls import path
 
 from tours import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/',views.SignupView.as_view(),name="signup"),
+    path('signin/',views.SigninView.as_view(),name="signin"),
+   
+    path('tour/list/',views.TourListView.as_view(),name="tour-list"),
+    path('tour/details/<int:pk>/',views.TourDetailView.as_view(),name="tour-details"),
     
-]
+    path('userprofile/edit/',views.UserProfileEditView.as_view(),name="userprofile-edit"),
+    # path('booking/<int:pk>/',views.BookingView.as_view(),name="booking"),
+    path('booking/confirm/<int:pk>/',views.BookingConfirmView.as_view(),name="booking-confirm"),
+    path('booking/detail/',views.BookingDetailsView.as_view(),name="booking-detail"),
+    path('booking/delete/<int:pk>/',views.BookingDeleteView.as_view(),name="booking-delete"),
+    path('booking/update/<int:pk>/',views.BookingUpdateView.as_view(),name="booking-update"),
+
+    path('checkout/',views.CheckoutView.as_view(),name="checkout"),
+    path('payment/verify/',views.PaymentVerificationView.as_view(),name="verify-payment"),
+
+
+    
+
+
+
+
+    
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

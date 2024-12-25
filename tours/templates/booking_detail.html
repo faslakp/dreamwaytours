@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+
+
+
+{%block main_block%}
+
+<div class="flow-root w-3/4 border border-black-300 shadow-lg rounded mx-auto mt-16 mb-16 p-9">
+    <h1 class="text-center text-5xl text-green-900 p-5 mb-8"> Booking-Details</h1>
+    {%for d in data%}
+    <dl class="-my-3 divide-y divide-black-100 text-sm">
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-black-900">Name</dt>
+          <dd class="text-black-700 sm:col-span-2">{{request.user}}</dd>
+        </div>
+    
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-black-900">Destination</dt>
+          <dd class="text-black-700 sm:col-span-2">{{d.tour_package.package_name}}</dd>
+        </div>
+    
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-black-900">Price per head</dt>
+          <dd class="text-black-700 sm:col-span-2">{{d.tour_package.price}}</dd>
+        </div>
+    
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-black-900">Number of people</dt>
+          <dd class="text-black-700 sm:col-span-2">{{d.number_of_people}}</dd>
+        </div>
+
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+            <dt class="font-medium text-black-900">Total Price</dt>
+            <dd class="text-black-700 sm:col-span-2">{{d.total_price}}/-</dd>
+          </div>
+
+          <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+            <dt class="font-medium text-black-900">Booking date</dt>
+            <dd class="text-black-700 sm:col-span-2">{{d.booking_date|date}}</dd>
+          </div>
+      </dl>
+         <div class="container "style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 600px; margin: 0 auto;">
+         <a href="{%url 'booking-delete' d.id%}" style="color: #ffffff; text-decoration: none; font-size: 16px; padding: 10px 20px; background-color: #ff0000; border-radius: 5px; display: inline-block; cursor: pointer; transition: background-color 0.3s;">Cancel</a>
+         <a href="{%url 'booking-update' d.id%}" style="color: #ffffff; text-decoration: none; font-size: 16px; padding: 10px 20px; background-color: #1978c5; border-radius: 5px; display: inline-block; cursor: pointer; transition: background-color 0.3s;">Update</a>
+         <a href="{%url 'checkout'%}" style="color: #ffffff; text-decoration: none; font-size: 16px; padding: 10px 20px; background-color: #28a745; border-radius: 5px; display: inline-block; cursor: pointer; transition: background-color 0.3s;">Payment</a>
+
+        </div>
+      
+
+    {%endfor%}
+
+
+  </div>
+{%endblock%}

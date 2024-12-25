@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+
+
+
+{%block main_block%}
+
+
+     
+     <div class="container w-3/4 mt-16 mb-16">
+        <h1>Booking</h1>
+        <form action=""method="post">
+            {%csrf_token%}
+    
+            {{data}}
+    
+            <button type="submit">Book</button>
+         </form>
+     </div>
+       
+
+
+
+
+
+{%endblock%}

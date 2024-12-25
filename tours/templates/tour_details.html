@@ -1,0 +1,131 @@
+{%extends 'base.html'%}
+
+{%block main_block%}
+
+
+<section>
+    <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8 shadow-lg bg-blue-100" >
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-center md:gap-8">
+        <div>
+          <div class="max-w-lg md:max-w-none">
+            <h2 class="text-2xl font-semibold text-gray-900 sm:text-3xl">
+             {{data.destination}}
+            </h2>
+  
+            <p class="mt-4 text-gray-700">
+              {{data.description}}
+            </p>
+          </div>
+        </div>
+  
+        <div>
+          <img
+            src="{{data.image.url}}"
+            class="rounded w-98 h-96"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="mt-16">
+    <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8 bg-green-100">
+      <div class="bg-yellow-100 rounded-lg shadow-lg p-6">
+        <h3 class="text-xl font-semibold text-gray-900">Package Details</h3>
+        <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Price -->
+          <div>
+            <p class="text-lg font-bold text-gray-700">Price:</p>
+            <p class="text-lg text-gray-900">{{data.price}}/-</p>
+          </div>
+          
+          <!-- Start Date -->
+          <div>
+            <p class="text-lg font-bold text-gray-700">Available Slots:</p>
+            <p class="text-lg text-gray-900">{{data.available_slots}}</p>
+          </div>
+          
+          <!-- End Date -->
+          <div>
+            <p class="text-lg font-bold text-gray-700">Start Date:</p>
+            <p class="text-lg text-gray-900">{{data.start_date}}</p>
+          </div>
+          
+          <!-- Available Slots -->
+          <div>
+            <p class="text-lg font-bold text-gray-700">End Date:</p>
+            <p class="text-lg text-gray-900">{{data.end_date}}</p>
+          </div> 
+          
+        </div>
+        
+        </div>
+
+      </div>
+     </div>
+
+
+  </div>
+</section>
+ 
+
+<div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8 bg-green-100">
+  <div class="bg-green-400 rounded-lg shadow-lg p-6 flex justify-center items-center">
+    <a href="{%url 'booking-confirm' data.id%}" class="bg-green-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-all duration-300">
+      Book Now
+    </a>
+  </div>
+</div>
+
+
+
+  
+    <section>
+        <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8 shadow-lg bg-blue-100 shadow-lg rounded" >
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-center md:gap-8">
+            <div>
+                <img
+                  src="{{data.image.url}}"
+                  class="rounded w-100 h-96"
+                  alt=""
+                />
+            </div>
+            <div>
+              <div class="max-w-lg md:max-w-none">
+                <h1 class="text-4xl font-semibold text-gray-900 sm:text-4xl">
+                    We Let Your Sweet Memory Ever Unforgottable
+                </h1>
+      
+                <p class="mt-4 text-gray-700">
+                  <div>
+                   <h2 class="text-2xl font-bold">Inclusions</h2>
+                        <li>Welcome Drinks on Arrival</li>
+                        <li>Entry Permit and documentation fee</li>
+                        <li>Arrival day early check-in with Breakfast @ Hotel</li>
+                        <li>Airport Pickup </li>
+                        <li>Full board Meals</li>
+                        <li>Travelling charge</li>
+                    
+
+                  </div>
+                  <div>
+                    <h2 class="text-2xl font-bold">Documents required</h2>
+
+                     <li>Aadhaar Card Copies of all passengers.</li>
+                     <li>Police clearance certificate</li>
+                     <li>Photo</li>
+                  </div>
+                </p>
+              </div>
+            </div>
+      
+           
+          </div>
+        </div>
+      </section>
+
+{%endblock%}
